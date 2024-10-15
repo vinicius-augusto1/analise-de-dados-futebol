@@ -23,6 +23,15 @@ public class CampeonatoService {
         this.timeRepository = new TimeRepository(timeFile);
     }
 
+    public String timeMaisVenceu2008(){
+        return partidaRepository.getPartidas().stream()
+                .filter(p -> p.getData().substring(6).equals("2008"))
+                .collect(Collectors.groupingBy(Partida::getVencedor, Collectors.counting()))
+                .entrySet().stream().max(Map.Entry.comparingByValue())
+                .get().getKey(); // testar o "isPresent"
+    }
+
+
 
 
 

@@ -11,6 +11,11 @@ public class Jogador {
 
     public Jogador(String nome) {
         this.nome = nome;
+        this.gols = 0;
+        this.cartoesAmarelos = 0;
+        this.cartoesVermelhos = 0;
+        this.golsContra = 0;
+        this.golsPenalti = 0;
     }
 
     public void adicionarGols(Integer quantidade){

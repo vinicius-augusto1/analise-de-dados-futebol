@@ -2,7 +2,6 @@ package service;
 
 import model.Jogador;
 import model.Partida;
-import model.Time;
 import repository.JogadorRepository;
 import repository.PartidaRepository;
 import repository.TimeRepository;
@@ -12,7 +11,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.Map;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -72,7 +70,7 @@ public class CampeonatoService {
                 .get();
     }
 
-    public Jogador jogadorComMaisCartoesVemelhos(){
+    public Jogador jogadorComMaisCartoesVermelhos(){
         return jogadorRepository.getJogadors().stream()
                 .max(Comparator.comparingInt(Jogador::getCartoesVermelhos))
                 .get();

@@ -1,5 +1,7 @@
 package utils;
 
+import exceptions.ArquivoNaoEncontradoException;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +18,8 @@ public class LeitorCsv {
                 String[] values = line.split(",");
                 records.add(values);
             }
+        }catch (IOException e) {
+            throw new ArquivoNaoEncontradoException(filepath);
         }
         return records;
     }

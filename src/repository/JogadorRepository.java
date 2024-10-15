@@ -1,5 +1,6 @@
 package repository;
 
+import exceptions.DadosIncompletosException;
 import model.Jogador;
 import utils.LeitorCsv;
 
@@ -13,7 +14,12 @@ public class JogadorRepository {
 
     public JogadorRepository(String filePath) throws IOException{
         this.jogadors = LeitorCsv.readCsv(filePath).stream()
-                .map(data -> new Jogador(data[0]))
+                .map(data -> {
+                    if (data[0] == null || data[0].isEmpty()) {
+                        throw new DadosIncompletosException("Jogador", "Nome");
+                    }
+                    return new Jogador(data[0]);
+                })
                 .collect(Collectors.toList());
     }
 

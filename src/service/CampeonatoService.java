@@ -1,5 +1,6 @@
 package service;
 
+import exceptions.EstatisticaNaoEncontradaException;
 import model.Jogador;
 import model.Partida;
 import repository.JogadorRepository;
@@ -55,13 +56,13 @@ public class CampeonatoService {
     public Jogador jogadorComMaisGols(){
         return jogadorRepository.getJogadors().stream()
                 .max(Comparator.comparingInt(Jogador::getGols))
-                .get();
+                .orElseThrow(() -> new EstatisticaNaoEncontradaException("Jogador com mais gols"));
     }
 
     public Jogador jogadorComMaisGolsDePenalti(){
         return jogadorRepository.getJogadors().stream()
                 .max(Comparator.comparingInt(Jogador::getGolsPenalti))
-                .get();
+                .orElseThrow(() -> new EstatisticaNaoEncontradaException("Jogador com mais gols de penalti"));
     }
 
     public Jogador jogadorComMaisCartoesAmarelos(){
@@ -73,6 +74,12 @@ public class CampeonatoService {
     public Jogador jogadorComMaisCartoesVermelhos(){
         return jogadorRepository.getJogadors().stream()
                 .max(Comparator.comparingInt(Jogador::getCartoesVermelhos))
+                .get();
+    }
+
+    public Partida partidaComMaisGols(){
+        return partidaRepository.getPartidas().stream()
+                .max(Comparator.comparing(p -> p.getMandantePlacar() + p.getVisitantePlacar()))
                 .get();
     }
 

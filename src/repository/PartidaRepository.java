@@ -14,7 +14,7 @@ public class PartidaRepository {
     public PartidaRepository(String filePath) throws IOException{
         this.partidas = LeitorCsv.readCsv(filePath).stream()
                 .map(data -> new Partida(
-                        Integer.parseInt(data[0]),
+                        data[0],
                         data[1],
                         data[2],
                         data[3],
@@ -26,8 +26,8 @@ public class PartidaRepository {
                         data[9],
                         data[10],
                         data[11],
-                        Integer.parseInt(data[12]),
-                        Integer.parseInt(data[13]),
+                        data[12],
+                        data[13],
                         data[14],
                         data[15]
                 ))

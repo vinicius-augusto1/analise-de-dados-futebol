@@ -7,8 +7,12 @@ import repository.PartidaRepository;
 import repository.TimeRepository;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class CampeonatoService {
 
@@ -23,12 +27,29 @@ public class CampeonatoService {
         this.timeRepository = new TimeRepository(timeFile);
     }
 
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
     public String timeMaisVenceu2008(){
         return partidaRepository.getPartidas().stream()
                 .filter(p -> p.getData().substring(6).equals("2008"))
                 .collect(Collectors.groupingBy(Partida::getVencedor, Collectors.counting()))
                 .entrySet().stream().max(Map.Entry.comparingByValue())
                 .get().getKey(); // testar o "isPresent"
+    }
+
+    public String estadoComMenosJogos(){
+        return partidaRepository.getPartidas().stream()
+                .filter(p -> {
+                    LocalDate data = LocalDate.parse(p.getData(), formatter);
+                    return !data.isBefore(LocalDate.of(2003,1,1))
+                            && !data.isAfter(LocalDate.of(2022,12,31));
+                })
+                .flatMap(p -> Stream.of(p.getMandanteEstado(), p.getVisitanteEstado()))
+                .collect(Collectors.groupingBy(state -> state, Collectors.counting()))
+                .entrySet().stream()
+                .min(Map.Entry.comparingByValue())
+                .map(Map.Entry::getKey)
+                .orElse(null);
     }
 
 

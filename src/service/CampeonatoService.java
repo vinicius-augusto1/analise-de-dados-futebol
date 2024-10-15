@@ -60,6 +60,12 @@ public class CampeonatoService {
                 .get();
     }
 
+    public Jogador jogadorComMaisGolsDePenalti(){
+        return jogadorRepository.getJogadors().stream()
+                .max(Comparator.comparingInt(Jogador::getGolsPenalti))
+                .get();
+    }
+
 
 
 

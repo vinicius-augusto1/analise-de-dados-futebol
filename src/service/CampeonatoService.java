@@ -72,6 +72,12 @@ public class CampeonatoService {
                 .get();
     }
 
+    public Jogador jogadorComMaisCartoesVemelhos(){
+        return jogadorRepository.getJogadors().stream()
+                .max(Comparator.comparingInt(Jogador::getCartoesVermelhos))
+                .get();
+    }
+
 
 
 

@@ -2,7 +2,7 @@ package model;
 
 public class Partida {
 
-    private Integer id;
+    private String id;
     private String rodada;
     private String data; // usar localDate depois
     private String hora; // aqui também
@@ -14,12 +14,12 @@ public class Partida {
     private String tecnicoVisitante;
     private String vencedor;
     private String arena;
-    private Integer mandantePlacar;
-    private Integer visitantePlacar;
+    private String mandantePlacar;
+    private String visitantePlacar;
     private String mandanteEstado;
     private String visitanteEstado;
 
-    public Partida(Integer id, String rodada, String data, String hora, String mandante, String visitante, String formacaoMandante, String formacaoVisitante, String tecnicoMandante, String tecnicoVisitante, String vencedor, String arena, Integer mandantePlacar, Integer visitantePlacar, String mandanteEstado, String visitanteEstado) {
+    public Partida(String id, String rodada, String data, String hora, String mandante, String visitante, String formacaoMandante, String formacaoVisitante, String tecnicoMandante, String tecnicoVisitante, String vencedor, String arena, String mandantePlacar, String visitantePlacar, String mandanteEstado, String visitanteEstado) {
         this.id = id;
         this.rodada = rodada;
         this.data = data;
@@ -38,11 +38,11 @@ public class Partida {
         this.visitanteEstado = visitanteEstado;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -134,19 +134,19 @@ public class Partida {
         this.arena = arena;
     }
 
-    public Integer getMandantePlacar() {
+    public String getMandantePlacar() {
         return mandantePlacar;
     }
 
-    public void setMandantePlacar(Integer mandantePlacar) {
+    public void setMandantePlacar(String mandantePlacar) {
         this.mandantePlacar = mandantePlacar;
     }
 
-    public Integer getVisitantePlacar() {
+    public String getVisitantePlacar() {
         return visitantePlacar;
     }
 
-    public void setVisitantePlacar(Integer visitantePlacar) {
+    public void setVisitantePlacar(String visitantePlacar) {
         this.visitantePlacar = visitantePlacar;
     }
 

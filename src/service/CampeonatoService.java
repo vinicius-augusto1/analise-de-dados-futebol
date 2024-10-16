@@ -30,13 +30,6 @@ public class CampeonatoService {
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-//    public String timeMaisVenceu2008(){
-//        return partidaRepository.getPartidas().stream()
-//                .filter(p -> p.getData().substring(6).equals("2008"))
-//                .collect(Collectors.groupingBy(Partida::getVencedor, Collectors.counting()))
-//                .entrySet().stream().max(Map.Entry.comparingByValue())
-//                .get().getKey(); // testar o "isPresent"
-//    }
 
     public String timeMaisVenceu2008() {
         return partidaRepository.getPartidas().stream()
@@ -49,20 +42,6 @@ public class CampeonatoService {
     }
 
 
-//    public String estadoComMenosJogos(){
-//        return partidaRepository.getPartidas().stream()
-//                .filter(p -> {
-//                    LocalDate data = LocalDate.parse(p.getData(), formatter);
-//                    return !data.isBefore(LocalDate.of(2003,1,1))
-//                            && !data.isAfter(LocalDate.of(2022,12,31));
-//                })
-//                .flatMap(p -> Stream.of(p.getMandanteEstado(), p.getVisitanteEstado()))
-//                .collect(Collectors.groupingBy(state -> state, Collectors.counting()))
-//                .entrySet().stream()
-//                .min(Map.Entry.comparingByValue())
-//                .map(Map.Entry::getKey)
-//                .orElse(null);
-//    }
 
     public String estadoComMenosJogos() {
         return partidaRepository.getPartidas().stream()
@@ -75,31 +54,31 @@ public class CampeonatoService {
 
 
     public Jogador jogadorComMaisGols(){
-        return jogadorRepository.getJogadors().stream()
+        return jogadorRepository.getJogadores().stream()
                 .max(Comparator.comparingInt(Jogador::getGols))
                 .orElseThrow(() -> new EstatisticaNaoEncontradaException("Jogador com mais gols"));
     }
 
     public Jogador jogadorComMaisGolsDePenalti(){
-        return jogadorRepository.getJogadors().stream()
+        return jogadorRepository.getJogadores().stream()
                 .max(Comparator.comparingInt(Jogador::getGolsPenalti))
                 .orElseThrow(() -> new EstatisticaNaoEncontradaException("Jogador com mais gols de penalti"));
     }
 
     public Jogador jogadorComMaisGolsContra(){
-        return jogadorRepository.getJogadors().stream()
+        return jogadorRepository.getJogadores().stream()
                 .max(Comparator.comparingInt(Jogador::getGolsContra))
                 .orElseThrow(() -> new EstatisticaNaoEncontradaException("O jogador com mais gols contra"));
     }
 
     public Jogador jogadorComMaisCartoesAmarelos(){
-        return jogadorRepository.getJogadors().stream()
+        return jogadorRepository.getJogadores().stream()
                 .max(Comparator.comparingInt(Jogador::getCartoesAmarelos))
                 .get();
     }
 
     public Jogador jogadorComMaisCartoesVermelhos(){
-        return jogadorRepository.getJogadors().stream()
+        return jogadorRepository.getJogadores().stream()
                 .max(Comparator.comparingInt(Jogador::getCartoesVermelhos))
                 .get();
     }

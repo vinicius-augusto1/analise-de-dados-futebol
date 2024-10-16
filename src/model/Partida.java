@@ -4,8 +4,8 @@ public class Partida {
 
     private String id;
     private String rodada;
-    private String data; // usar localDate depois
-    private String hora; // aqui também
+    private String data;
+    private String hora;
     private String mandante;
     private String visitante;
     private String formacaoMandante;
@@ -165,4 +165,17 @@ public class Partida {
     public void setVisitanteEstado(String visitanteEstado) {
         this.visitanteEstado = visitanteEstado;
     }
+
+    @Override
+    public String toString() {
+        return "Partida ID: " + id +
+                ", Rodada: " + rodada +
+                ", Data: " + data +
+                ", Hora: " + hora +
+                ", Mandante: " + mandante +
+                ", Visitante: " + visitante +
+                ", Placar: " + mandantePlacar + " x " + visitantePlacar +
+                ", Arena: " + arena;
+    }
+
 }

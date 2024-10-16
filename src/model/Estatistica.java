@@ -136,4 +136,18 @@ public class Estatistica {
     public void setEscanteios(Integer escanteios) {
         this.escanteios = escanteios;
     }
+
+    @Override
+    public String toString() {
+        return "Partida ID: " + partidaId +
+                ", Rodada: " + rodada +
+                ", Clube: " + clube +
+                ", Chutes: " + chutes +
+                ", Chutes no Alvo: " + chutesNoAlvo +
+                ", Posse de Bola: " + posseDeBola + "%" +
+                ", Faltas: " + faltas +
+                ", Cartões Amarelos: " + cartaoAmarelo +
+                ", Cartões Vermelhos: " + cartaoVermelho;
+    }
+
 }

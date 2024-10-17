@@ -3,33 +3,31 @@ package service;
 import exceptions.EstatisticaNaoEncontradaException;
 import model.Jogador;
 import model.Partida;
+import repository.CartaoRepository;
 import repository.JogadorRepository;
 import repository.PartidaRepository;
 import repository.TimeRepository;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Comparator;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class CampeonatoService {
 
     private JogadorRepository jogadorRepository;
     private PartidaRepository partidaRepository;
     private TimeRepository timeRepository;
+    private CartaoRepository cartaoRepository;
 
-
-    public CampeonatoService(String jogadoresFile, String partidasFile, String timeFile) throws IOException {
+    public CampeonatoService(String jogadoresFile, String partidasFile, String timeFile, String cartaoFile) throws IOException {
         this.jogadorRepository = new JogadorRepository(jogadoresFile);
         this.partidaRepository = new PartidaRepository(partidasFile);
         this.timeRepository = new TimeRepository(timeFile);
+        this.cartaoRepository = new CartaoRepository(cartaoFile);
     }
-
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
 
     public String timeMaisVenceu2008() {
         return partidaRepository.getPartidas().stream()
@@ -41,8 +39,6 @@ public class CampeonatoService {
                 .orElse("Nenhum vencedor encontrado em 2008.");
     }
 
-
-
     public String estadoComMenosJogos() {
         return partidaRepository.getPartidas().stream()
                 .collect(Collectors.groupingBy(Partida::getMandanteEstado, Collectors.counting()))
@@ -52,49 +48,80 @@ public class CampeonatoService {
                 .orElse("Nenhum estado encontrado.");
     }
 
-
-    public Jogador jogadorComMaisGols(){
-        return jogadorRepository.getJogadores().stream()
+    public String jogadorComMaisGols() {
+        Jogador jogador = jogadorRepository.getJogadores().stream()
                 .max(Comparator.comparingInt(Jogador::getGols))
                 .orElseThrow(() -> new EstatisticaNaoEncontradaException("Jogador com mais gols"));
+
+        return String.format("Nome: %s, Gols: %d", jogador.getNome(), jogador.getGols());
     }
 
-    public Jogador jogadorComMaisGolsDePenalti(){
-        return jogadorRepository.getJogadores().stream()
+    public String jogadorComMaisGolsDePenalti() {
+        Jogador jogador = jogadorRepository.getJogadores().stream()
                 .max(Comparator.comparingInt(Jogador::getGolsPenalti))
                 .orElseThrow(() -> new EstatisticaNaoEncontradaException("Jogador com mais gols de penalti"));
+
+        return String.format("Nome: %s, Gols de Penalti: %d", jogador.getNome(), jogador.getGolsPenalti());
     }
 
-    public Jogador jogadorComMaisGolsContra(){
-        return jogadorRepository.getJogadores().stream()
+    public String jogadorComMaisGolsContra() {
+        Jogador jogador = jogadorRepository.getJogadores().stream()
                 .max(Comparator.comparingInt(Jogador::getGolsContra))
                 .orElseThrow(() -> new EstatisticaNaoEncontradaException("O jogador com mais gols contra"));
+
+        return String.format("Nome: %s, Gols Contra: %d", jogador.getNome(), jogador.getGolsContra());
     }
 
-    public Jogador jogadorComMaisCartoesAmarelos(){
-        return jogadorRepository.getJogadores().stream()
-                .max(Comparator.comparingInt(Jogador::getCartoesAmarelos))
-                .get();
+//    public String jogadorComMaisCartoesAmarelos() {
+//        Jogador jogador = jogadorRepository.getJogadores().stream()
+//                .max(Comparator.comparingInt(Jogador::getCartoesAmarelos))
+//                .orElseThrow(() -> new EstatisticaNaoEncontradaException("Jogador com mais cartões amarelos"));
+//
+//        return String.format("Nome: %s, Cartões Amarelos: %d", jogador.getNome(), jogador.getCartoesAmarelos());
+//    }
+
+    public String jogadorComMaisCartoesAmarelos() throws IOException {
+
+        Map<String, Long> contagemCartoesVermelhos = Files.lines(Paths.get("src/data/campeonato-brasileiro-cartoes.csv"))
+                .skip(1)
+                .map(linha -> linha.split(","))
+                .filter(p -> p.length == 8)
+                .filter(p -> p[3].equalsIgnoreCase("Amarelo"))
+                .collect(Collectors.groupingBy(
+                        p -> p[4],
+                        Collectors.counting()
+                ));
+
+        return contagemCartoesVermelhos.entrySet().stream()
+                .max(Map.Entry.comparingByValue())
+                .map(entry -> String.format("Jogador: %s, Cartões Amarelos: %d", entry.getKey(), entry.getValue()))
+                .orElse("Nenhum jogador com cartões vermelhos encontrado.");
     }
 
-    public Jogador jogadorComMaisCartoesVermelhos(){
-        return jogadorRepository.getJogadores().stream()
-                .max(Comparator.comparingInt(Jogador::getCartoesVermelhos))
-                .get();
+
+
+    public String jogadorComMaisCartoesVermelhos() throws IOException {
+
+        Map<String, Long> contagemCartoesVermelhos = Files.lines(Paths.get("src/data/campeonato-brasileiro-cartoes.csv"))
+                .skip(1)
+                .map(linha -> linha.split(","))
+                .filter(p -> p.length == 8)
+                .filter(p -> p[3].equalsIgnoreCase("Vermelho"))
+                .collect(Collectors.groupingBy(
+                        p -> p[4],
+                        Collectors.counting()
+                ));
+
+        return contagemCartoesVermelhos.entrySet().stream()
+                .max(Map.Entry.comparingByValue())
+                .map(entry -> String.format("Jogador: %s, Cartões Vermelhos: %d", entry.getKey(), entry.getValue()))
+                .orElse("Nenhum jogador com cartões vermelhos encontrado.");
     }
 
-    public Partida partidaComMaisGols(){
+
+    public Partida partidaComMaisGols() {
         return partidaRepository.getPartidas().stream()
                 .max(Comparator.comparing(p -> p.getMandantePlacar() + p.getVisitantePlacar()))
-                .get();
+                .orElseThrow(() -> new EstatisticaNaoEncontradaException("Partida com mais gols"));
     }
-
-
-
-
-
-
-
-
-
 }

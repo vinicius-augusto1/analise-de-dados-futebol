@@ -3,11 +3,12 @@ package model;
 public class Jogador {
 
     private String nome;
+    private String clube;
     private Integer gols;
-    private Integer cartoesAmarelos;
-    private Integer cartoesVermelhos;
     private Integer golsContra;
     private Integer golsPenalti;
+    private Integer cartoesAmarelos;
+    private Integer cartoesVermelhos;
 
 //    public Jogador(String nome) {
 //        this.nome = nome;
@@ -17,6 +18,7 @@ public class Jogador {
 //        this.golsContra = 0;
 //        this.golsPenalti = 0;
 //    }
+
     public Jogador(String nome, Integer gols, Integer cartoesAmarelos, Integer cartoesVermelhos, Integer golsContra, Integer golsPenalti) {
         this.nome = nome;
         this.gols = gols != null ? gols : 0;
@@ -26,25 +28,25 @@ public class Jogador {
         this.golsPenalti = golsPenalti != null ? golsPenalti : 0;
     }
 
-    public void adicionarGols(Integer quantidade){
-        this.gols += quantidade;
+    public void adicionarGol(String tipo) {
+        switch (tipo) {
+            case "Gol Comum":
+                gols++;
+                break;
+            case "Gol Contra":
+                golsContra++;
+                break;
+            case "Penalty":
+                golsPenalti++;
+                break;
+        }
     }
 
-    public void adicionarCartaoAmarelo(){
-        this.cartoesAmarelos++;
+    public int totalGols() {
+        return gols + golsContra + golsPenalti;
     }
 
-    public void adicionarCartaoVermelho(){
-        this.cartoesVermelhos++;
-    }
 
-    public void adicionarGolContra(){
-        this.golsContra++;
-    }
-
-    public void adicionarGolPenalti(){
-        this.golsPenalti++;
-    }
 
     public String getNome() {
         return nome;
@@ -52,14 +54,6 @@ public class Jogador {
 
     public Integer getGols() {
         return gols;
-    }
-
-    public Integer getCartoesAmarelos() {
-        return cartoesAmarelos;
-    }
-
-    public Integer getCartoesVermelhos() {
-        return cartoesVermelhos;
     }
 
     public Integer getGolsContra() {
@@ -70,38 +64,11 @@ public class Jogador {
         return golsPenalti;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public void setGols(Integer gols) {
-        this.gols = gols;
-    }
-
-    public void setCartoesAmarelos(Integer cartoesAmarelos) {
-        this.cartoesAmarelos = cartoesAmarelos;
-    }
-
-    public void setCartoesVermelhos(Integer cartoesVermelhos) {
-        this.cartoesVermelhos = cartoesVermelhos;
-    }
-
-    public void setGolsContra(Integer golsContra) {
-        this.golsContra = golsContra;
-    }
-
-    public void setGolsPenalti(Integer golsPenalti) {
-        this.golsPenalti = golsPenalti;
-    }
 
     @Override
     public String toString() {
-        return "Nome: " + nome +
-                ", Gols: " + gols +
-                ", Gols de Penalti: " + golsPenalti +
-                ", Gols Contra: " + golsContra +
-                ", Cartões Amarelos: " + cartoesAmarelos +
-                ", Cartões Vermelhos: " + cartoesVermelhos;
+        return nome + " (" + clube + ") - Total de Gols: " + totalGols() +
+                " [Gols Comum: " + gols + ", Gols Contra: " + golsContra + ", Penaltis: " + golsPenalti + "]";
     }
 
 }

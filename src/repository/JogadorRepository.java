@@ -15,21 +15,19 @@ public class JogadorRepository {
     public JogadorRepository(String filePath) throws IOException {
         this.jogadores = LeitorCsv.readCsv(filePath).stream()
                 .map(data -> {
-                    // Validação de dados
                     if (data.length < 6) {
                         throw new DadosIncompletosException("Jogador", "Dados insuficientes");
                     }
 
-                    String nome = data[3].replace("\"", "").trim(); // Nome do jogador
+                    String nome = data[3].replace("\"", "").trim();
                     if (nome.isEmpty()) {
                         throw new DadosIncompletosException("Jogador", "Nome");
                     }
 
-                    // Criação do jogador
                     Jogador jogador = new Jogador(nome,
                             parseToInt(data[1], 0), // Gols
                             parseToInt(data[3], 0), // Cartões Vermelhos
-                            0, // Cartões Amarelos (pode inicializar como 0 se não tiver dado)
+                            0, // Cartões Amarelos, resolver o bug dos cartões
                             parseToInt(data[4], 0), // Gols Contra
                             parseToInt(data[5], 0)   // Gols de Penalti
                     );
@@ -49,9 +47,9 @@ public class JogadorRepository {
         }
 
         try {
-            return Integer.parseInt(value.replace("\"", "").trim()); // Lidar com aspas e espaços
+            return Integer.parseInt(value.replace("\"", "").trim());
         } catch (NumberFormatException e) {
-            return defaultValue; // Retornar valor padrão em caso de erro
+            return defaultValue;
         }
     }
 }

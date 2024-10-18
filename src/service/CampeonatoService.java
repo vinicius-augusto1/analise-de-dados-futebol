@@ -8,10 +8,14 @@ import repository.JogadorRepository;
 import repository.PartidaRepository;
 import repository.TimeRepository;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -48,37 +52,85 @@ public class CampeonatoService {
                 .orElse("Nenhum estado encontrado.");
     }
 
+
+
+    public List<Jogador> carregarJogadores(String csvFile) {
+        List<Jogador> jogadores = new ArrayList<>();
+        String line;
+
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+            br.readLine();
+
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",");
+
+                if (data.length < 6) {
+                    System.out.println("Linha inválida: " + line);
+                    continue;
+                }
+
+                String clube = data[2].replaceAll("\"", "").trim();
+                String atleta = data[3].replaceAll("\"", "").trim();
+                String tipoDeGol = data[5].replaceAll("\"", "").trim();
+
+
+
+
+                Jogador jogador = jogadores.stream()
+                        .filter(j -> j.getNome().equals(atleta) && j.getClube().equals(clube))
+                        .findFirst()
+                        .orElseGet(() -> {
+                            Jogador novoJogador = new Jogador(atleta, 0, 0, 0, 0, 0); // Inicia com zero gols, cartões, etc.
+                            novoJogador.setClube(clube);
+                            jogadores.add(novoJogador);
+                            return novoJogador;
+                        });
+
+                jogador.adicionarGol(tipoDeGol);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return jogadores;
+    }
+
     public String jogadorComMaisGols() {
-        Jogador jogador = jogadorRepository.getJogadores().stream()
+        List<Jogador> jogadores = carregarJogadores("src/data/campeonato-brasileiro-gols.csv");
+
+        Jogador jogador = jogadores.stream()
                 .max(Comparator.comparingInt(Jogador::getGols))
                 .orElseThrow(() -> new EstatisticaNaoEncontradaException("Jogador com mais gols"));
 
-        return String.format("Nome: %s, Gols: %d", jogador.getNome(), jogador.getGols());
+        return String.format("Nome: %s, Clube: %s, Gols: %d", jogador.getNome(), jogador.getClube(), jogador.getGols());
     }
 
     public String jogadorComMaisGolsDePenalti() {
-        Jogador jogador = jogadorRepository.getJogadores().stream()
+        List<Jogador> jogadores = carregarJogadores("src/data/campeonato-brasileiro-gols.csv");
+
+        Jogador jogador = jogadores.stream()
                 .max(Comparator.comparingInt(Jogador::getGolsPenalti))
                 .orElseThrow(() -> new EstatisticaNaoEncontradaException("Jogador com mais gols de penalti"));
 
-        return String.format("Nome: %s, Gols de Penalti: %d", jogador.getNome(), jogador.getGolsPenalti());
+        return String.format("Nome: %s, Clube: %s, Gols de Penalti: %d", jogador.getNome(), jogador.getClube(), jogador.getGolsPenalti());
     }
 
     public String jogadorComMaisGolsContra() {
-        Jogador jogador = jogadorRepository.getJogadores().stream()
+        List<Jogador> jogadores = carregarJogadores("src/data/campeonato-brasileiro-gols.csv");
+
+        Jogador jogador = jogadores.stream()
                 .max(Comparator.comparingInt(Jogador::getGolsContra))
                 .orElseThrow(() -> new EstatisticaNaoEncontradaException("O jogador com mais gols contra"));
 
-        return String.format("Nome: %s, Gols Contra: %d", jogador.getNome(), jogador.getGolsContra());
+        return String.format("Nome: %s, Clube: %s, Gols Contra: %d", jogador.getNome(), jogador.getClube(), jogador.getGolsContra());
     }
 
-//    public String jogadorComMaisCartoesAmarelos() {
-//        Jogador jogador = jogadorRepository.getJogadores().stream()
-//                .max(Comparator.comparingInt(Jogador::getCartoesAmarelos))
-//                .orElseThrow(() -> new EstatisticaNaoEncontradaException("Jogador com mais cartões amarelos"));
-//
-//        return String.format("Nome: %s, Cartões Amarelos: %d", jogador.getNome(), jogador.getCartoesAmarelos());
-//    }
+
+
+
+
+
+
+
 
     public String jogadorComMaisCartoesAmarelos() throws IOException {
 

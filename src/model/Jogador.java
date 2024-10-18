@@ -10,14 +10,6 @@ public class Jogador {
     private Integer cartoesAmarelos;
     private Integer cartoesVermelhos;
 
-//    public Jogador(String nome) {
-//        this.nome = nome;
-//        this.gols = 0;
-//        this.cartoesAmarelos = 0;
-//        this.cartoesVermelhos = 0;
-//        this.golsContra = 0;
-//        this.golsPenalti = 0;
-//    }
 
     public Jogador(String nome, Integer gols, Integer cartoesAmarelos, Integer cartoesVermelhos, Integer golsContra, Integer golsPenalti) {
         this.nome = nome;
@@ -26,6 +18,62 @@ public class Jogador {
         this.cartoesVermelhos = cartoesVermelhos != null ? cartoesVermelhos : 0;
         this.golsContra = golsContra != null ? golsContra : 0;
         this.golsPenalti = golsPenalti != null ? golsPenalti : 0;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getClube() {
+        return clube;
+    }
+
+    public void setClube(String clube) {
+        this.clube = clube;
+    }
+
+    public Integer getGols() {
+        return gols;
+    }
+
+    public void setGols(Integer gols) {
+        this.gols = gols;
+    }
+
+    public Integer getGolsContra() {
+        return golsContra;
+    }
+
+    public void setGolsContra(Integer golsContra) {
+        this.golsContra = golsContra;
+    }
+
+    public Integer getGolsPenalti() {
+        return golsPenalti;
+    }
+
+    public void setGolsPenalti(Integer golsPenalti) {
+        this.golsPenalti = golsPenalti;
+    }
+
+    public Integer getCartoesAmarelos() {
+        return cartoesAmarelos;
+    }
+
+    public void setCartoesAmarelos(Integer cartoesAmarelos) {
+        this.cartoesAmarelos = cartoesAmarelos;
+    }
+
+    public Integer getCartoesVermelhos() {
+        return cartoesVermelhos;
+    }
+
+    public void setCartoesVermelhos(Integer cartoesVermelhos) {
+        this.cartoesVermelhos = cartoesVermelhos;
     }
 
     public void adicionarGol(String tipo) {
@@ -39,30 +87,18 @@ public class Jogador {
             case "Penalty":
                 golsPenalti++;
                 break;
+            case "":
+                gols++;
+                break;
         }
     }
+
 
     public int totalGols() {
         return gols + golsContra + golsPenalti;
     }
 
 
-
-    public String getNome() {
-        return nome;
-    }
-
-    public Integer getGols() {
-        return gols;
-    }
-
-    public Integer getGolsContra() {
-        return golsContra;
-    }
-
-    public Integer getGolsPenalti() {
-        return golsPenalti;
-    }
 
 
     @Override

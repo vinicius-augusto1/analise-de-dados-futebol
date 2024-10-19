@@ -4,7 +4,7 @@ Este projeto tem como foco a análise de dados de partidas de futebol, oferecend
 
 ## Estrutura do Projeto
 
-O projeto está organizado de maneira a facilitar a separação de responsabilidades e garantir que cada parte tenha seu papel claramente definido. Abaixo, descrevemos os principais diretórios e seus conteúdos:
+O projeto está organizado de maneira a facilitar a separação de responsabilidades e garantir que cada parte tenha seu papel claramente definido. Abaixo, descrevi os principais diretórios e seus conteúdos:
 
 - O pacote `controller` é responsável por controlar o fluxo principal da aplicação. A classe principal, `CampeonatoController`, gerencia as interações e a execução do campeonato.
 

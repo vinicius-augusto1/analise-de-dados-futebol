@@ -1,6 +1,6 @@
-# Análise de Dados do Futebol
+# Análise de Dados do Brasileirão
 
-Este projeto tem como foco a análise de dados de partidas de futebol, oferecendo a capacidade de extrair e calcular diversas estatísticas sobre jogadores, times, cartões, entre outros aspectos importantes. Utilizando arquivos CSV, a aplicação permite a leitura de dados e oferece funcionalidades para realizar consultas e gerar insights relevantes sobre o desempenho dos participantes no campeonato.
+Este projeto tem como foco a análise de dados de partidas de futebol, oferecendo a capacidade de extrair e calcular diversas estatísticas sobre jogadores, times, cartões, entre outros aspectos importantes. Utilizando arquivos CSV de 2003 a 2022, a aplicação permite a leitura de dados e oferece funcionalidades para realizar consultas e gerar insights relevantes sobre o desempenho dos participantes no campeonato.
 
 ## Estrutura do Projeto
 

@@ -33,7 +33,7 @@ Para compilar e executar o projeto, é necessário ter os seguintes itens instal
 A compilação do projeto é bastante simples. Após clonar o repositório, navegue até o diretório raiz do projeto e execute o seguinte comando para compilar todos os arquivos:
 
 ```bash
-javac -d out src/**/*.java
+javac -d out $(find src -name "*.java")
 ```
 
 ## Como Executar o Projeto
@@ -41,7 +41,7 @@ javac -d out src/**/*.java
 java -cp out Main
 ```
 
-Isso iniciará a aplicação e você será apresentado a um menu interativo, que permitirá explorar as estatísticas dos jogadores, times, e partidas registradas no campeonato.
+Isso iniciará a aplicação e você será apresentado a um menu, que permitirá explorar as estatísticas dos jogadores, times, e partidas registradas no campeonato.
 
 
 ## Funcionalidades Principais

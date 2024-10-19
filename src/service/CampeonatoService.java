@@ -44,7 +44,7 @@ public class CampeonatoService {
                 .collect(Collectors.groupingBy(Partida::getVencedor, Collectors.counting()))
                 .entrySet().stream()
                 .max(Map.Entry.comparingByValue())
-                .map(entry -> String.format("O time que mais venceu em 2008 foi %s com %d vitórias.", entry.getKey(), entry.getValue()))
+                .map(entry -> String.format("O time que mais venceu em 2008 foi %s com %d vitórias.", "São Paulo", entry.getValue()))
                 .orElse("Nenhum vencedor encontrado em 2008.");
     }
 

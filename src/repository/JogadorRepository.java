@@ -37,10 +37,6 @@ public class JogadorRepository {
                 .collect(Collectors.toList());
     }
 
-    public List<Jogador> getJogadores() {
-        return jogadores;
-    }
-
     private Integer parseToInt(String value, int defaultValue) {
         if (value == null || value.isEmpty()) {
             return defaultValue;

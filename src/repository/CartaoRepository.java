@@ -18,8 +18,4 @@ public class CartaoRepository {
                 ))
                 .collect(Collectors.toList());
     }
-
-    public List<Cartao> getCartoes() {
-        return cartoes;
-    }
 }

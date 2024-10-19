@@ -9,14 +9,5 @@ public class Cartao {
         this.cartao = cartao;
     }
 
-    public String getCartao() {
-        return cartao;
-    }
-
-
-    public String getAtleta() {
-        return atleta;
-    }
-
 
 }

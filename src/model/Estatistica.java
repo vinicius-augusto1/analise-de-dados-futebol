@@ -33,16 +33,6 @@ public class Estatistica {
     }
 
 
-    public String getClube() {
-        return clube;
-    }
-
-
-    public Integer getChutes() {
-        return chutes;
-    }
-
-
     public Integer getPassos() {
         return passos;
     }

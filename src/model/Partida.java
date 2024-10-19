@@ -44,16 +44,6 @@ public class Partida {
     }
 
 
-    public String getMandante() {
-        return mandante;
-    }
-
-
-    public String getVisitante() {
-        return visitante;
-    }
-
-
     public String getVencedor() {
         return vencedor;
     }

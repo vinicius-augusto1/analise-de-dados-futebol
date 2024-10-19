@@ -88,7 +88,7 @@ public class CampeonatoService {
                         .filter(j -> j.getNome().equals(atleta) && j.getClube().equals(clube))
                         .findFirst()
                         .orElseGet(() -> {
-                            Jogador novoJogador = new Jogador(atleta, 0, 0, 0, 0, 0); // Inicia com zero gols, cartões, etc.
+                            Jogador novoJogador = new Jogador(atleta, 0, 0, 0, 0, 0);
                             novoJogador.setClube(clube);
                             jogadores.add(novoJogador);
                             return novoJogador;

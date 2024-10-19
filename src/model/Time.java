@@ -10,10 +10,6 @@ public class Time {
         this.estado = estado;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
     public String getEstado() {
         return estado;
     }

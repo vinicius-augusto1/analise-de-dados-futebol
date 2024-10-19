@@ -38,93 +38,26 @@ public class Partida {
         this.visitanteEstado = visitanteEstado;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getRodada() {
-        return rodada;
-    }
-
-    public void setRodada(String rodada) {
-        this.rodada = rodada;
-    }
 
     public String getData() {
         return data;
     }
 
-    public void setData(String data) {
-        this.data = data;
-    }
-
-    public String getHora() {
-        return hora;
-    }
-
-    public void setHora(String hora) {
-        this.hora = hora;
-    }
 
     public String getMandante() {
         return mandante;
     }
 
-    public void setMandante(String mandante) {
-        this.mandante = mandante;
-    }
 
     public String getVisitante() {
         return visitante;
     }
 
-    public void setVisitante(String visitante) {
-        this.visitante = visitante;
-    }
-
-    public String getFormacaoMandante() {
-        return formacaoMandante;
-    }
-
-    public void setFormacaoMandante(String formacaoMandante) {
-        this.formacaoMandante = formacaoMandante;
-    }
-
-    public String getFormacaoVisitante() {
-        return formacaoVisitante;
-    }
-
-    public void setFormacaoVisitante(String formacaoVisitante) {
-        this.formacaoVisitante = formacaoVisitante;
-    }
-
-    public String getTecnicoMandante() {
-        return tecnicoMandante;
-    }
-
-    public void setTecnicoMandante(String tecnicoMandante) {
-        this.tecnicoMandante = tecnicoMandante;
-    }
-
-    public String getTecnicoVisitante() {
-        return tecnicoVisitante;
-    }
-
-    public void setTecnicoVisitante(String tecnicoVisitante) {
-        this.tecnicoVisitante = tecnicoVisitante;
-    }
 
     public String getVencedor() {
         return vencedor;
     }
 
-    public void setVencedor(String vencedor) {
-        this.vencedor = vencedor;
-    }
 
     public String getArena() {
         return arena;
@@ -138,33 +71,16 @@ public class Partida {
         return mandantePlacar;
     }
 
-    public void setMandantePlacar(String mandantePlacar) {
-        this.mandantePlacar = mandantePlacar;
-    }
 
     public String getVisitantePlacar() {
         return visitantePlacar;
     }
 
-    public void setVisitantePlacar(String visitantePlacar) {
-        this.visitantePlacar = visitantePlacar;
-    }
 
     public String getMandanteEstado() {
         return mandanteEstado;
     }
 
-    public void setMandanteEstado(String mandanteEstado) {
-        this.mandanteEstado = mandanteEstado;
-    }
-
-    public String getVisitanteEstado() {
-        return visitanteEstado;
-    }
-
-    public void setVisitanteEstado(String visitanteEstado) {
-        this.visitanteEstado = visitanteEstado;
-    }
 
     @Override
     public String toString() {

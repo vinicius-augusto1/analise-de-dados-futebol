@@ -24,9 +24,6 @@ public class Jogador {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 
     public String getClube() {
         return clube;
@@ -40,41 +37,16 @@ public class Jogador {
         return gols;
     }
 
-    public void setGols(Integer gols) {
-        this.gols = gols;
-    }
 
     public Integer getGolsContra() {
         return golsContra;
     }
 
-    public void setGolsContra(Integer golsContra) {
-        this.golsContra = golsContra;
-    }
 
     public Integer getGolsPenalti() {
         return golsPenalti;
     }
 
-    public void setGolsPenalti(Integer golsPenalti) {
-        this.golsPenalti = golsPenalti;
-    }
-
-    public Integer getCartoesAmarelos() {
-        return cartoesAmarelos;
-    }
-
-    public void setCartoesAmarelos(Integer cartoesAmarelos) {
-        this.cartoesAmarelos = cartoesAmarelos;
-    }
-
-    public Integer getCartoesVermelhos() {
-        return cartoesVermelhos;
-    }
-
-    public void setCartoesVermelhos(Integer cartoesVermelhos) {
-        this.cartoesVermelhos = cartoesVermelhos;
-    }
 
     public void adicionarGol(String tipo) {
         switch (tipo) {
@@ -97,8 +69,6 @@ public class Jogador {
     public int totalGols() {
         return gols + golsContra + golsPenalti;
     }
-
-
 
 
     @Override

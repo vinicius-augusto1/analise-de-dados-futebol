@@ -11,7 +11,7 @@ public class CartaoRepository {
     private List<Cartao> cartoes;
 
 
-    public CartaoRepository(String filePath) throws IOException{
+    public CartaoRepository(String filePath) throws IOException {
         this.cartoes = LeitorCsv.readCsv(filePath).stream()
                 .map(data -> new Cartao(
                         data[4], data[5]
@@ -19,7 +19,7 @@ public class CartaoRepository {
                 .collect(Collectors.toList());
     }
 
-    public List<Cartao> getCartoes(){
+    public List<Cartao> getCartoes() {
         return cartoes;
     }
 }

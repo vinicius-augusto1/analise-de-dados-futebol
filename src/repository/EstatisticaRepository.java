@@ -31,7 +31,7 @@ public class EstatisticaRepository {
                 .collect(Collectors.toList());
     }
 
-    public List<Estatistica> getEstatisticaList(){
+    public List<Estatistica> getEstatisticaList() {
         return estatisticaList;
     }
 }

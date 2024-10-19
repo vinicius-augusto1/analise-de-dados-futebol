@@ -1,24 +1,21 @@
 package controller;
 
-import repository.PartidaRepository;
 import service.CampeonatoService;
 import utils.MenuEstilizado;
 
-import java.awt.*;
 import java.io.IOException;
 
 import static utils.MenuEstilizado.*;
+
 
 public class CampeonatoController {
 
     private CampeonatoService service;
 
 
-
     public CampeonatoController(String jogadorFile, String partidasFile, String timesFile, String cartaoFile) throws IOException {
         this.service = new CampeonatoService(jogadorFile, partidasFile, timesFile, cartaoFile);
     }
-
 
 
     public void exibirEstatisticas() throws IOException {

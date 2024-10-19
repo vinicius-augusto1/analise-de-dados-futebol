@@ -16,7 +16,4 @@ public class TimeRepository {
                 .collect(Collectors.toList());
     }
 
-    public List<Time> getTimes(){
-        return times;
-    }
 }

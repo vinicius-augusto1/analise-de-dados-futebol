@@ -30,7 +30,6 @@ public class CampeonatoService {
     private CartaoRepository cartaoRepository;
 
 
-
     public CampeonatoService(String jogadoresFile, String partidasFile, String timeFile, String cartaoFile) throws IOException {
         this.jogadorRepository = new JogadorRepository(jogadoresFile);
         this.partidaRepository = new PartidaRepository(partidasFile);
@@ -50,20 +49,6 @@ public class CampeonatoService {
     }
 
 
-
-
-
-
-
-//    public String estadoComMenosJogos() {
-//        return partidaRepository.getPartidas().stream()
-//                .collect(Collectors.groupingBy(Partida::getMandanteEstado, Collectors.counting()))
-//                .entrySet().stream()
-//                .min(Map.Entry.comparingByValue())
-//                .map(entry -> String.format("O estado com menos jogos entre 2003 e 2022 foi %s com apenas %d jogos.", entry.getKey(), entry.getValue()))
-//                .orElse("Nenhum estado encontrado.");
-//    }
-
     public String estadoComMenosJogos() {
         return partidaRepository.getPartidas().stream()
                 .collect(Collectors.groupingBy(Partida::getMandanteEstado, Collectors.counting()))
@@ -77,8 +62,6 @@ public class CampeonatoService {
                 })
                 .orElse("Nenhum estado encontrado.");
     }
-
-
 
 
     public List<Jogador> carregarJogadores(String csvFile) {
@@ -99,8 +82,6 @@ public class CampeonatoService {
                 String clube = data[2].replaceAll("\"", "").trim();
                 String atleta = data[3].replaceAll("\"", "").trim();
                 String tipoDeGol = data[5].replaceAll("\"", "").trim();
-
-
 
 
                 Jogador jogador = jogadores.stream()
@@ -152,13 +133,6 @@ public class CampeonatoService {
     }
 
 
-
-
-
-
-
-
-
     public String jogadorComMaisCartoesAmarelos() throws IOException {
 
         Map<String, Long> contagemCartoesVermelhos = Files.lines(Paths.get("src/data/campeonato-brasileiro-cartoes.csv"))
@@ -176,7 +150,6 @@ public class CampeonatoService {
                 .map(entry -> String.format("Jogador: %s, Cartões Amarelos: %d", entry.getKey(), entry.getValue()))
                 .orElse("Nenhum jogador com cartões vermelhos encontrado.");
     }
-
 
 
     public String jogadorComMaisCartoesVermelhos() throws IOException {

@@ -11,7 +11,7 @@ public class PartidaRepository {
 
     private List<Partida> partidas;
 
-    public PartidaRepository(String filePath) throws IOException{
+    public PartidaRepository(String filePath) throws IOException {
         this.partidas = LeitorCsv.readCsv(filePath).stream()
                 .map(data -> new Partida(
                         data[0],
@@ -34,7 +34,7 @@ public class PartidaRepository {
                 .collect(Collectors.toList());
     }
 
-    public List<Partida> getPartidas(){
+    public List<Partida> getPartidas() {
         return partidas;
     }
 

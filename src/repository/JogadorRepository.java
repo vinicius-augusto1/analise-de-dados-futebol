@@ -25,11 +25,11 @@ public class JogadorRepository {
                     }
 
                     Jogador jogador = new Jogador(nome,
-                            parseToInt(data[1], 0), // Gols
-                            parseToInt(data[3], 0), // Cartões Vermelhos
-                            0, // Cartões Amarelos, resolver o bug dos cartões
-                            parseToInt(data[4], 0), // Gols Contra
-                            parseToInt(data[5], 0)   // Gols de Penalti
+                            parseToInt(data[1], 0),
+                            parseToInt(data[3], 0),
+                            0,
+                            parseToInt(data[4], 0),
+                            parseToInt(data[5], 0)
                     );
 
                     return jogador;

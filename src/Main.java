@@ -13,7 +13,7 @@ public class Main {
                     "src/data/campeonato-brasileiro-cartoes.csv"
             );
             campeonatoController.exibirEstatisticas();
-        }catch (IOException e){
+        } catch (IOException e) {
             System.out.println("Error ao ler os arquivos: " + e.getMessage());
         }
     }

@@ -10,15 +10,4 @@ public class Estado {
         this.quantidadeJogos = 0;
     }
 
-    public void adicionarJogo(){
-        this.quantidadeJogos++;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public Integer getQuantidadeJogos() {
-        return quantidadeJogos;
-    }
 }

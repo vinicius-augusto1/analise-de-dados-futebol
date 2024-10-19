@@ -13,16 +13,10 @@ public class Cartao {
         return cartao;
     }
 
-    public void setCartao(String cartao) {
-        this.cartao = cartao;
-    }
 
     public String getAtleta() {
         return atleta;
     }
 
-    public void setAtleta(String atleta) {
-        this.atleta = atleta;
-    }
 
 }

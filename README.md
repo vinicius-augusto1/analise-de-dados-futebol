@@ -30,8 +30,12 @@ Para compilar e executar o projeto, é necessário ter os seguintes itens instal
 
 ## Como Compilar o Projeto
 
-A compilação do projeto é bastante simples. Após clonar o repositório, navegue até o diretório raiz do projeto e execute o seguinte comando para compilar todos os arquivos:
-
+A compilação do projeto é bastante simples.
+Primeiro você deve clonar o repositório. 
+```bash
+git clone https://github.com/vinicius-augusto1/analise-de-dados-futebol.git
+```
+Após isso navegue até o diretório raiz do projeto e execute o seguinte comando para compilar todos os arquivos:
 ```bash
 javac -d out $(find src -name "*.java")
 ```

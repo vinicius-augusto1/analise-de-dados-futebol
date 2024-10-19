@@ -1,6 +1,7 @@
 package service;
 
 import exceptions.EstatisticaNaoEncontradaException;
+import model.EstadosAbreviacaoENUM;
 import model.Jogador;
 import model.Partida;
 import repository.CartaoRepository;
@@ -54,14 +55,29 @@ public class CampeonatoService {
 
 
 
+//    public String estadoComMenosJogos() {
+//        return partidaRepository.getPartidas().stream()
+//                .collect(Collectors.groupingBy(Partida::getMandanteEstado, Collectors.counting()))
+//                .entrySet().stream()
+//                .min(Map.Entry.comparingByValue())
+//                .map(entry -> String.format("O estado com menos jogos entre 2003 e 2022 foi %s com apenas %d jogos.", entry.getKey(), entry.getValue()))
+//                .orElse("Nenhum estado encontrado.");
+//    }
+
     public String estadoComMenosJogos() {
         return partidaRepository.getPartidas().stream()
                 .collect(Collectors.groupingBy(Partida::getMandanteEstado, Collectors.counting()))
                 .entrySet().stream()
                 .min(Map.Entry.comparingByValue())
-                .map(entry -> String.format("O estado com menos jogos entre 2003 e 2022 foi %s com apenas %d jogos.", entry.getKey(), entry.getValue()))
+                .map(entry -> {
+                    String nomeEstado = EstadosAbreviacaoENUM.getNomePorSigla(entry.getKey());
+                    String estadoResultado = (nomeEstado != null) ? nomeEstado : entry.getKey();
+
+                    return String.format("O estado com menos jogos entre 2003 e 2022 foi %s com apenas %d jogos.", estadoResultado, entry.getValue());
+                })
                 .orElse("Nenhum estado encontrado.");
     }
+
 
 
 

@@ -48,17 +48,6 @@ java -cp out Main
 Isso iniciará a aplicação e você será apresentado a um menu, que permitirá explorar as estatísticas dos jogadores, times, e partidas registradas no campeonato.
 
 
-## Funcionalidades Principais
-Entre as principais funcionalidades da aplicação, estão:
-
-- Consulta de Estatísticas de Jogadores: Permite visualizar o desempenho individual de cada jogador, incluindo gols, assistências e cartões recebidos.
-
-- Análise de Partidas: Detalha informações sobre as partidas jogadas, como placar e jogadores envolvidos.
-
-- Ranking de Times: Exibe a classificação dos times com base em seus resultados ao longo do campeonato.
-
-- Estatísticas de Cartões: Permite consultar quais jogadores receberam mais cartões amarelos e vermelhos, proporcionando uma visão clara sobre o comportamento disciplinar dos atletas.
-
 ## Tratamento de Exceções
 O sistema inclui várias exceções personalizadas para melhorar o tratamento de erros:
 
